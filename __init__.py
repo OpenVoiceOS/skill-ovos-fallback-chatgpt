@@ -7,7 +7,10 @@ class ChatGPTSkill(FallbackSkill):
     def __init__(self):
         super().__init__("ChatGPT")
         self._chat = None
-        self._chatlog = ""
+        self.max_utts = 15  # memory size TODO from skill settings
+        self.qa_pairs = []  # tuple of q+a
+        self.current_q = None
+        self.current_a = None
 
     def initialize(self):
         self.add_event("speak", self.handle_speak)
@@ -16,16 +19,21 @@ class ChatGPTSkill(FallbackSkill):
 
     def handle_utterance(self, message):
         utt = message.data.get("utterances")[0]
+        self.current_q = utt
+        self.current_a = None
         # TODO: imperfect, subject to race conditions between bus messages
-        if self.memory and self._chatlog.endswith("Human: "):
-            self._chatlog += f"{utt}\nAI: "
+        # use session_id/ident to track all matches
 
     def handle_speak(self, message):
         utt = message.data.get("utterance")
-        # TODO: imperfect, subject to race conditions between bus messages
-        # does not handle multi speak answers
-        if self.memory and self._chatlog.endswith("AI: "):
-            self._chatlog += f"{utt}\nHuman: "
+        if not self.current_q:
+            # TODO - use session_id/ident to track all matches
+            # append to previous question if multi-speak answer
+            return
+        if utt and self.memory:
+            self.qa_pairs.append((self.current_q, utt))
+        self.current_q = None
+        self.current_a = None
 
     @property
     def memory(self):
@@ -37,7 +45,7 @@ class ChatGPTSkill(FallbackSkill):
 
 Human: Hello, who are you?
 AI: I am an AI created by OpenAI. How can I help you today?
-Human: """
+"""
         return self.settings.get("initial_prompt", start_chat_log)
 
     @property
@@ -52,19 +60,33 @@ Human: """
             self._chat = ai.Completion()
         return self._chat
 
-    def get_prompt(self, utt):
-        start_chat = self.initial_prompt
-        if self.memory:
-            self._chatlog = self._chatlog or start_chat
-            if self._chatlog.endswith("\nHuman: "):
-                self._chatlog += f"{utt}\nAI: "
-            elif self._chatlog.endswith("\nAI: "):
-                self._chatlog += f"Please rephrase the question\nHuman: {utt}\nAI: "
-            else:
-                self._chatlog += f"\nHuman: {utt}\nAI: "
-            prompt = self._chatlog
+    @property
+    def chat_history(self):
+        if len(self.qa_pairs) > self.max_utts:
+            qa = self.qa_pairs[-1*self.max_utts:]
         else:
-            prompt = start_chat + f"{utt}?\nAI: "
+            qa = self.qa_pairs
+        chat = self.initial_prompt.strip() + "\n"
+        if qa:
+            qa = "\n".join([f"Human: {q}\nAI: {a}" for q, a in qa])
+            if chat.endswith("\nHuman: "):
+                chat = chat[-1*len("\nHuman: "):]
+            if chat.endswith("\nAI: "):
+                chat += f"Please rephrase the question\n"
+            chat += qa
+        return chat
+
+    def get_prompt(self, utt):
+        self.current_q = None
+        self.current_a = None
+        if self.memory:
+            prompt = self.chat_history
+        else:
+            prompt = self.initial_prompt
+        if not prompt.endswith("\nHuman: "):
+            prompt += f"\nHuman: {utt}?\nAI: "
+        else:
+            prompt += f"{utt}?\nAI: "
         return prompt
 
     def ask_chatgpt(self, message):
@@ -78,7 +100,7 @@ Human: """
         if not answer or not answer.strip("?"):
             return False
         if self.memory:
-            self._chatlog += answer
+            self.qa_pairs.append((utterance, answer))
         self.speak(answer)
         return True
 
@@ -94,6 +116,13 @@ if __name__ == "__main__":
     s._startup(bus=FakeBus())
     msg = Message("intent_failure", {"utterance": "Explain quantum computing in simple terms"})
     s.ask_chatgpt(msg)
+    s.ask_chatgpt(msg)
+    s.ask_chatgpt(msg)
+    s.ask_chatgpt(msg)
+    s.ask_chatgpt(msg)
+    s.ask_chatgpt(msg)
+    s.ask_chatgpt(msg)
+    print(s.chat_history)
     # funny failure cases:
     #    ????
     #    Are you seriously asking that?
