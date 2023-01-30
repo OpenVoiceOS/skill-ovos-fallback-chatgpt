@@ -38,14 +38,8 @@ Under skill settings you can tweak some parameters for chatGPT
 The default initial prompt is
 
 ```
-The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.
-
-Human: Hello, who are you?
-AI: I am an AI created by OpenAI. How can I help you today?
-Human:
+The assistant is helpful, creative, clever, and very friendly.
 ```
-
-NOTE: if you change this be sure to keep the `Human: ... AI: ...` prefixes, they are used internally for some text parsing operations
 
 Check out [awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) for ideas
 

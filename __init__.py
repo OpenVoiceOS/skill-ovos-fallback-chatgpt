@@ -41,12 +41,9 @@ class ChatGPTSkill(FallbackSkill):
 
     @property
     def initial_prompt(self):
-        start_chat_log = """The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.
-
-Human: Hello, who are you?
-AI: I am an AI created by OpenAI. How can I help you today?
-"""
-        return self.settings.get("initial_prompt", start_chat_log)
+        start_chat_log = """The assistant is helpful, creative, clever, and very friendly."""
+        s = self.settings.get("initial_prompt", start_chat_log)
+        return f"The following is a conversation with an AI assistant. {s}"
 
     @property
     def chatgpt(self):
@@ -62,11 +59,13 @@ AI: I am an AI created by OpenAI. How can I help you today?
 
     @property
     def chat_history(self):
+        # TODO - intro question from skill settings
+        intro_q = ("Hello, who are you?", "I am an AI created by OpenAI. How can I help you today?")
         if len(self.qa_pairs) > self.max_utts:
-            qa = self.qa_pairs[-1*self.max_utts:]
+            qa = [intro_q] + self.qa_pairs[-1*self.max_utts:]
         else:
-            qa = self.qa_pairs
-        chat = self.initial_prompt.strip() + "\n"
+            qa = [intro_q] + self.qa_pairs
+        chat = self.initial_prompt.strip() + "\n\n"
         if qa:
             qa = "\n".join([f"Human: {q}\nAI: {a}" for q, a in qa])
             if chat.endswith("\nHuman: "):
@@ -79,10 +78,7 @@ AI: I am an AI created by OpenAI. How can I help you today?
     def get_prompt(self, utt):
         self.current_q = None
         self.current_a = None
-        if self.memory:
-            prompt = self.chat_history
-        else:
-            prompt = self.initial_prompt
+        prompt = self.chat_history
         if not prompt.endswith("\nHuman: "):
             prompt += f"\nHuman: {utt}?\nAI: "
         else:
@@ -97,7 +93,7 @@ AI: I am an AI created by OpenAI. How can I help you today?
                                        top_p=1, frequency_penalty=0,
                                        presence_penalty=0.7, best_of=2, max_tokens=100, stop="\nHuman: ")
         answer = response.choices[0].text.split("Human: ")[0].split("AI: ")[0].strip()
-        if not answer or not answer.strip("?"):
+        if not answer or not answer.strip("?") or not answer.strip("_"):
             return False
         if self.memory:
             self.qa_pairs.append((utterance, answer))
@@ -116,12 +112,17 @@ if __name__ == "__main__":
     s._startup(bus=FakeBus())
     msg = Message("intent_failure", {"utterance": "Explain quantum computing in simple terms"})
     s.ask_chatgpt(msg)
+    print(s.qa_pairs[-1])
+    msg = Message("intent_failure", {"utterance": "Got any creative ideas for a 10 year old’s birthday?"})
     s.ask_chatgpt(msg)
+    print(s.qa_pairs[-1])
+    msg = Message("intent_failure", {"utterance": "Do you think aliens exist?"})
     s.ask_chatgpt(msg)
+    print(s.qa_pairs[-1])
+    msg = Message("intent_failure", {"utterance": "When will the world end?"})
     s.ask_chatgpt(msg)
-    s.ask_chatgpt(msg)
-    s.ask_chatgpt(msg)
-    s.ask_chatgpt(msg)
+    print(s.qa_pairs[-1])
+    print("##################################3")
     print(s.chat_history)
     # funny failure cases:
     #    ????
