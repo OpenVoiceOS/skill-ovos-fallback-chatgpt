@@ -1,5 +1,2 @@
-# chatgptpy
-# easychatgpt
 openai
-
 ovos_workshop~=0.0.10

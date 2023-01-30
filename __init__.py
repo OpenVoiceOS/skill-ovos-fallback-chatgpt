@@ -10,8 +10,6 @@ class ChatGPTSkill(FallbackSkill):
         self._chatlog = ""
 
     def initialize(self):
-        # lazy load
-        initchat = self.chatgpt is not None
         self.add_event("speak", self.handle_speak)
         self.add_event("recognizer_loop:utterance", self.handle_utterance)
         self.register_fallback(self.ask_chatgpt, 85)
@@ -73,7 +71,8 @@ Human: """
         utterance = message.data['utterance']
         prompt = self.get_prompt(utterance)
         # TODO - params from skill settings
-        response = self.chatgpt.create(prompt=prompt, engine="davinci", temperature=0.85, top_p=1, frequency_penalty=0,
+        response = self.chatgpt.create(prompt=prompt, engine="davinci", temperature=0.85,
+                                       top_p=1, frequency_penalty=0,
                                        presence_penalty=0.7, best_of=2, max_tokens=100, stop="\nHuman: ")
         answer = response.choices[0].text.split("Human: ")[0].split("AI: ")[0].strip()
         if not answer or not answer.strip("?"):
