@@ -76,9 +76,12 @@ Human: """
         response = self.chatgpt.create(prompt=prompt, engine="davinci", temperature=0.85, top_p=1, frequency_penalty=0,
                                        presence_penalty=0.7, best_of=2, max_tokens=100, stop="\nHuman: ")
         answer = response.choices[0].text.split("Human: ")[0].split("AI: ")[0].strip()
+        if not answer or not answer.strip("?"):
+            return False
         if self.memory:
             self._chatlog += answer
-        return answer
+        self.speak(answer)
+        return True
 
 
 def create_skill():
@@ -91,8 +94,7 @@ if __name__ == "__main__":
     s = ChatGPTSkill()
     s._startup(bus=FakeBus())
     msg = Message("intent_failure", {"utterance": "Explain quantum computing in simple terms"})
-    ans = s.ask_chatgpt(msg)
-    print(ans)
+    s.ask_chatgpt(msg)
     # funny failure cases:
     #    ????
     #    Are you seriously asking that?
