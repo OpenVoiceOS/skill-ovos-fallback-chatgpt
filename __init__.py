@@ -48,8 +48,6 @@ Human: """
         # this is a property to allow lazy init
         # the key may be set after skill is loaded
         key = self.settings.get("key")
-        # TODO - delete before upload
-        key = "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"
         if not key:
             raise ValueError("OpenAI api key not set in skill settings.json")
         if not self._chat:
