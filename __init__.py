@@ -35,10 +35,10 @@ class ChatGPTSkill(FallbackSkill):
 
     @property
     def initial_prompt(self):
-        start_chat_log = """Human: Hello, I am a Human.
-AI: Hello, I am a state of the art voice assistant with a vast knowledge base.
-Human: Can you help me?
-AI: I can answer any question.
+        start_chat_log = """The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.
+
+Human: Hello, who are you?
+AI: I am an AI created by OpenAI. How can I help you today?
 Human: """
         return self.settings.get("initial_prompt", start_chat_log)
 
