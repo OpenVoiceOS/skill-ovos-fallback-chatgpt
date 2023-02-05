@@ -1,2 +1,2 @@
-openai
+ovos-backend-client
 ovos_workshop~=0.0.10
