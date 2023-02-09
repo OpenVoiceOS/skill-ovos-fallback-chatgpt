@@ -1,5 +1,7 @@
 import openai as ai
 from ovos_workshop.skills.fallback import FallbackSkill
+from ovos_utils.process_utils import RuntimeRequirements
+from ovos_utils import classproperty
 
 
 class ChatGPTSkill(FallbackSkill):
@@ -11,6 +13,18 @@ class ChatGPTSkill(FallbackSkill):
         self.qa_pairs = []  # tuple of q+a
         self.current_q = None
         self.current_a = None
+
+    @classproperty
+    def runtime_requirements(self):
+        return RuntimeRequirements(internet_before_load=True,
+                                   network_before_load=True,
+                                   gui_before_load=False,
+                                   requires_internet=True,
+                                   requires_network=True,
+                                   requires_gui=False,
+                                   no_internet_fallback=False,
+                                   no_network_fallback=False,
+                                   no_gui_fallback=True)
 
     def initialize(self):
         self.add_event("speak", self.handle_speak)
