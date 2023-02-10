@@ -54,6 +54,10 @@ class ChatGPTSkill(FallbackSkill):
         return self.settings.get("memory", True)
 
     @property
+    def engine(self):
+        return self.settings.get("engine", "ada")
+
+    @property
     def initial_prompt(self):
         start_chat_log = """The assistant is helpful, creative, clever, and very friendly."""
         s = self.settings.get("initial_prompt", start_chat_log)
@@ -103,9 +107,9 @@ class ChatGPTSkill(FallbackSkill):
         utterance = message.data['utterance']
         prompt = self.get_prompt(utterance)
         # TODO - params from skill settings
-        response = self.chatgpt.create(prompt=prompt, engine="davinci", temperature=0.85,
+        response = self.chatgpt.create(prompt=prompt, engine=self.engine, temperature=0.85,
                                        top_p=1, frequency_penalty=0,
-                                       presence_penalty=0.7, best_of=2, max_tokens=100, stop="\nHuman: ")
+                                       presence_penalty=0.7, best_of=2, max_tokens=200, stop="\nHuman: ")
         answer = response.choices[0].text.split("Human: ")[0].split("AI: ")[0].strip()
         if not answer or not answer.strip("?") or not answer.strip("_"):
             return False
