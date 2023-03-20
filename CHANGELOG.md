@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/1c73c6a5e5a16b4644004c85d465bc690c0db506...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a1...HEAD)
+
+**Fixed bugs:**
+
+- feat/selectable\_model [\#6](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/6) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.2a1](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a1) (2023-03-20)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/1c73c6a5e5a16b4644004c85d465bc690c0db506...V0.0.2a1)
 
 **Implemented enhancements:**
 
