@@ -24,6 +24,7 @@ Under skill settings you can tweak some parameters for chatGPT
 
 - `key` - your api_key to access OpenAI
 - `persona` - can be used to create a "persona", give a personality to chatGPT
+- `model` - LLM model to use, valid options `"gpt-3.5-turbo", "ada", "babbage", "curie", "text-davinci-002", "text-davinci-003"`
 
 The default persona is `helpful, creative, clever, and very friendly.`
 

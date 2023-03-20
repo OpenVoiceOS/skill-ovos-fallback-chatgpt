@@ -1,15 +1,12 @@
-from ovos_workshop.skills.fallback import FallbackSkill
-from ovos_utils.process_utils import RuntimeRequirements
-from ovos_utils import classproperty
 from ovos_solver_openai_persona import OpenAIPersonaSolver
+from ovos_solver_openai_persona.prompts import OpenAIPersonaPromptSolver
+from ovos_utils import classproperty
+from ovos_utils.log import LOG
+from ovos_utils.process_utils import RuntimeRequirements
+from ovos_workshop.skills.fallback import FallbackSkill
 
 
 class ChatGPTSkill(FallbackSkill):
-
-    def __init__(self):
-        super().__init__("ChatGPT")
-        self.current_q = None
-        self.current_a = None
 
     @classproperty
     def runtime_requirements(self):
@@ -23,8 +20,24 @@ class ChatGPTSkill(FallbackSkill):
                                    no_network_fallback=False,
                                    no_gui_fallback=True)
 
+    def __init__(self):
+        super().__init__("ChatGPT")
+        self.current_q = None
+        self.current_a = None
+
     def initialize(self):
-        self._chat = OpenAIPersonaSolver(config=self.settings)
+        chat_engines = ["gpt-3.5-turbo"]
+        text_completions = ["ada", "babbage", "curie", "davinci",
+                            "text-davinci-002", "text-davinci-003"]
+        code_completions = ["code-cushman-001", "code-davinci-002"]
+        engine = self.settings.get("model", "gpt-3.5-turbo")
+        if engine in chat_engines:
+            self._chat = OpenAIPersonaSolver(config=self.settings)
+        elif engine in text_completions:  # davinci/ada ...
+            self._chat = OpenAIPersonaPromptSolver(config=self.settings)
+        else:
+            LOG.warning(f"valid models: {chat_engines + text_completions}")
+            raise ValueError(f"invalid OpenAI model: {engine}")
         self.add_event("speak", self.handle_speak)
         self.add_event("recognizer_loop:utterance", self.handle_utterance)
         self.register_fallback(self.ask_chatgpt, 85)
@@ -46,6 +59,8 @@ class ChatGPTSkill(FallbackSkill):
             return
         if self.current_a:
             self.current_a += ". " + utt
+        else:
+            self.current_a = utt
 
     def ask_chatgpt(self, message):
         self.current_a = None
@@ -60,4 +75,3 @@ class ChatGPTSkill(FallbackSkill):
 
 def create_skill():
     return ChatGPTSkill()
-
