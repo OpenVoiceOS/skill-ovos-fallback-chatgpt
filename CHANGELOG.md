@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a1...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a2...HEAD)
+
+**Closed issues:**
+
+- Throws an exception on missing api key, outputs nothing after key is set. [\#7](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/issues/7)
+
+## [V0.0.2a2](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a2) (2023-03-20)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a1...V0.0.2a2)
 
 **Fixed bugs:**
 
