@@ -1,5 +1,9 @@
 # Changelog
 
+## [V0.0.2a5](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a5) (2023-11-25)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a4...V0.0.2a5)
+
 ## [V0.0.2a4](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a4) (2023-11-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a3...V0.0.2a4)
