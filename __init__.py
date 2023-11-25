@@ -20,12 +20,9 @@ class ChatGPTSkill(FallbackSkill):
                                    no_network_fallback=False,
                                    no_gui_fallback=True)
 
-    def __init__(self):
-        super().__init__("ChatGPT")
+    def initialize(self):
         self.current_q = None
         self.current_a = None
-
-    def initialize(self):
         chat_engines = ["gpt-3.5-turbo"]
         text_completions = ["ada", "babbage", "curie", "davinci",
                             "text-davinci-002", "text-davinci-003"]
@@ -71,7 +68,3 @@ class ChatGPTSkill(FallbackSkill):
         self.current_q = None
         self.speak(answer)
         return True
-
-
-def create_skill():
-    return ChatGPTSkill()
