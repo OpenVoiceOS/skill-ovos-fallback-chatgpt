@@ -47,13 +47,24 @@ class ChatGPTSkill(FallbackSkill):
         messages = []  # tuple of question, answer
 
         q = None
+        ans = None
         for m in self.sessions[sess.session_id]:
             if m[0] == "user":
-                q = m[1]
+                q = m[1]  # track question
+                if ans is not None:
+                    # save previous q/a pair
+                    messages.append((q, ans))
+                    q = None
+                ans = None
             elif m[0] == "ai":
-                if q is not None:
-                    messages.append((q, m[1]))
-                q = None
+                if ans is None:
+                    ans = m[1]  # track answer
+                else:  # merge multi speak answers
+                    ans = f"{ans}. {m[1]}"
+
+        # save last q/a pair
+        if ans is not None and q is not None:
+            messages.append((q, ans))
         return messages
 
     def ask_chatgpt(self, message):
