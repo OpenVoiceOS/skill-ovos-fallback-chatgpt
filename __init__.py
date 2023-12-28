@@ -1,3 +1,4 @@
+from ovos_bus_client.message import Message
 from ovos_bus_client.session import SessionManager
 from ovos_solver_openai_persona import OpenAIPersonaSolver
 from ovos_utils import classproperty
@@ -68,12 +69,19 @@ class ChatGPTSkill(FallbackSkill):
             messages.append((q, ans))
         return messages
 
-    def ask_chatgpt(self, message):
+    def _async_ask(self, message):
         utterance = message.data["utterance"]
-        self.speak_dialog("asking")
         self.chat.qa_pairs = self.build_msg_history(message)
         answer = self.chat.get_spoken_answer(utterance)
         if not answer:
-            return False
-        self.speak(answer)
+            self.speak_dialog("gpt_error")
+        else:
+            self.speak(answer)
+
+    def ask_chatgpt(self, message):
+        utterance = message.data["utterance"]
+        self.speak_dialog("asking")
+        # ask in a thread so fallback doesnt timeout
+        self.bus.once("async.chatgpt.fallback", self._async_ask)
+        self.bus.emit(Message("async.chatgpt.fallback", {"utterance": utterance}))
         return True
