@@ -39,7 +39,7 @@ cat <<EOF>~/.config/mycroft/skills/skill-ovos-fallback-chatgpt.openvoiceos/setti
 EOF
 ```
 
-If you are already running the [skill-ovos-fallback-unknown](https://github.com/OpenVoiceOS/skill-ovos-fallback-unknown) skill, you might have to either uninstall it or blacklist it or change the fallback priority in `mycroft.conf`.
+If you are already running the [skill-ovos-fallback-unknown](https://github.com/OpenVoiceOS/skill-ovos-fallback-unknown) skill, you might have to either uninstall it or change the fallback priority in `mycroft.conf`.
 
 ## Examples
 
