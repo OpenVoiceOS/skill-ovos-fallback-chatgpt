@@ -1,13 +1,13 @@
 # ChatGPT Fallback Skill
 
-When in doubt, ask chatgpt, powered by [OpenAI Solver](https://github.com/OpenVoiceOS/ovos-solver-plugin-openai-persona)
+When in doubt, ask ChatGPT, powered by [OpenAI Solver](https://github.com/OpenVoiceOS/ovos-solver-plugin-openai-persona).
 
-You need to configure an api_key, get it at https://beta.openai.com/account/api-keys
+You need to configure a `key`, get it at https://platform.openai.com/api-keys
 
-
-## About 
+## About
 
 Capabilities:
+
 - Remembers what user said earlier in the conversation
 - Trained to decline inappropriate requests
 
@@ -19,17 +19,29 @@ Limitations:
 
 ## Configuration
 
-Under skill settings you can tweak some parameters for chatGPT
-
+Under skill settings you can tweak some parameters for chatGPT.
 
 - `key` - your api_key to access OpenAI
 - `persona` - can be used to create a "persona", give a personality to chatGPT
-- `model` - LLM model to use, eg `"gpt-3.5-turbo", see all options [here](https://platform.openai.com/docs/models)
+- `model` - LLM model to use, eg `gpt-3.5-turbo`, see all options [here](https://platform.openai.com/docs/models)
 
 The default persona is `helpful, creative, clever, and very friendly.`
 
+```shell
+mkdir -p ~/.config/mycroft/skills/skill-ovos-fallback-chatgpt.openvoiceos
+cat <<EOF>~/.config/mycroft/skills/skill-ovos-fallback-chatgpt.openvoiceos/settings.json
+{
+  "key": "sk-XXXYYYZZZAAABBB123",
+  "model": "gpt-3.5-turbo",
+  "persona": "You are a helpful voice assistant with a friendly tone and fun sense of humor",
+  "__mycroft_skill_firstrun": false
+}
+EOF
+```
 
-## Examples 
+If you are already running the [skill-ovos-fallback-unknown](https://github.com/OpenVoiceOS/skill-ovos-fallback-unknown) skill, you might have to either uninstall it or blacklist it or change the fallback priority in `mycroft.conf`.
 
-* "Explain quantum computing in simple terms"
-* "Got any creative ideas for a 10 year old’s birthday?"
+## Examples
+
+- "Explain quantum computing in simple terms"
+- "Got any creative ideas for a 10 year old’s birthday?"

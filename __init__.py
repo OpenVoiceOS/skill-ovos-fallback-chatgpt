@@ -2,7 +2,6 @@ from ovos_bus_client.session import SessionManager
 from ovos_solver_openai_persona import OpenAIPersonaSolver
 from ovos_utils import classproperty
 from ovos_utils.process_utils import RuntimeRequirements
-
 from ovos_workshop.skills.fallback import FallbackSkill
 
 
@@ -11,15 +10,17 @@ class ChatGPTSkill(FallbackSkill):
 
     @classproperty
     def runtime_requirements(self):
-        return RuntimeRequirements(internet_before_load=True,
-                                   network_before_load=True,
-                                   gui_before_load=False,
-                                   requires_internet=True,
-                                   requires_network=True,
-                                   requires_gui=False,
-                                   no_internet_fallback=False,
-                                   no_network_fallback=False,
-                                   no_gui_fallback=True)
+        return RuntimeRequirements(
+            internet_before_load=True,
+            network_before_load=True,
+            gui_before_load=False,
+            requires_internet=True,
+            requires_network=True,
+            requires_gui=False,
+            no_internet_fallback=False,
+            no_network_fallback=False,
+            no_gui_fallback=True,
+        )
 
     def initialize(self):
         self.chat = OpenAIPersonaSolver(config=self.settings)
@@ -68,7 +69,8 @@ class ChatGPTSkill(FallbackSkill):
         return messages
 
     def ask_chatgpt(self, message):
-        utterance = message.data['utterance']
+        utterance = message.data["utterance"]
+        self.speak_dialog("asking")
         self.chat.qa_pairs = self.build_msg_history(message)
         answer = self.chat.get_spoken_answer(utterance)
         if not answer:
