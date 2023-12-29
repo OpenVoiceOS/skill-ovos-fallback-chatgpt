@@ -1,5 +1,21 @@
 # Changelog
 
+## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/HEAD)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a8...HEAD)
+
+**Implemented enhancements:**
+
+- Add dialog and make it more async [\#11](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/11) ([goldyfruit](https://github.com/goldyfruit))
+
+**Closed issues:**
+
+- Missing OVOSLangTranslationFactory mapping [\#8](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/issues/8)
+
+## [V0.0.2a8](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a8) (2023-11-25)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a7...V0.0.2a8)
+
 ## [V0.0.2a7](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a7) (2023-11-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a6...V0.0.2a7)
