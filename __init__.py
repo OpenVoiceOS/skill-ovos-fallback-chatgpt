@@ -1,8 +1,8 @@
+from ovos_bus_client.message import Message
 from ovos_bus_client.session import SessionManager
 from ovos_solver_openai_persona import OpenAIPersonaSolver
 from ovos_utils import classproperty
 from ovos_utils.process_utils import RuntimeRequirements
-
 from ovos_workshop.skills.fallback import FallbackSkill
 
 
@@ -11,15 +11,17 @@ class ChatGPTSkill(FallbackSkill):
 
     @classproperty
     def runtime_requirements(self):
-        return RuntimeRequirements(internet_before_load=True,
-                                   network_before_load=True,
-                                   gui_before_load=False,
-                                   requires_internet=True,
-                                   requires_network=True,
-                                   requires_gui=False,
-                                   no_internet_fallback=False,
-                                   no_network_fallback=False,
-                                   no_gui_fallback=True)
+        return RuntimeRequirements(
+            internet_before_load=True,
+            network_before_load=True,
+            gui_before_load=False,
+            requires_internet=True,
+            requires_network=True,
+            requires_gui=False,
+            no_internet_fallback=False,
+            no_network_fallback=False,
+            no_gui_fallback=True,
+        )
 
     def initialize(self):
         self.chat = OpenAIPersonaSolver(config=self.settings)
@@ -67,11 +69,19 @@ class ChatGPTSkill(FallbackSkill):
             messages.append((q, ans))
         return messages
 
-    def ask_chatgpt(self, message):
-        utterance = message.data['utterance']
+    def _async_ask(self, message):
+        utterance = message.data["utterance"]
         self.chat.qa_pairs = self.build_msg_history(message)
         answer = self.chat.get_spoken_answer(utterance)
         if not answer:
-            return False
-        self.speak(answer)
+            self.speak_dialog("gpt_error")
+        else:
+            self.speak(answer)
+
+    def ask_chatgpt(self, message):
+        utterance = message.data["utterance"]
+        self.speak_dialog("asking")
+        # ask in a thread so fallback doesnt timeout
+        self.bus.once("async.chatgpt.fallback", self._async_ask)
+        self.bus.emit(Message("async.chatgpt.fallback", {"utterance": utterance}))
         return True
