@@ -1,4 +1,3 @@
-from ovos_bus_client.message import Message
 from ovos_bus_client.session import SessionManager
 from ovos_solver_openai_persona import OpenAIPersonaSolver
 from ovos_utils import classproperty
