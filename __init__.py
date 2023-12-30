@@ -83,5 +83,7 @@ class ChatGPTSkill(FallbackSkill):
         self.speak_dialog("asking")
         # ask in a thread so fallback doesnt timeout
         self.bus.once("async.chatgpt.fallback", self._async_ask)
-        self.bus.emit(Message("async.chatgpt.fallback", {"utterance": utterance}))
+        self.bus.emit(
+            message.forward("async.chatgpt.fallback", {"utterance": utterance})
+        )
         return True
