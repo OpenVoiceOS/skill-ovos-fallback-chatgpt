@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a8...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a9...HEAD)
+
+**Fixed bugs:**
+
+- Fix async issue with HiveMind [\#13](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/13) ([goldyfruit](https://github.com/goldyfruit))
+
+## [V0.0.2a9](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a9) (2023-12-29)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a8...V0.0.2a9)
 
 **Implemented enhancements:**
 
