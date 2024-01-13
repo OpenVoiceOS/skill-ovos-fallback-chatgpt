@@ -23,7 +23,6 @@ class ChatGPTSkill(FallbackSkill):
         )
 
     def initialize(self):
-        self.chat = OpenAIPersonaSolver(config=self.settings)
         self.add_event("speak", self.handle_speak)
         self.add_event("recognizer_loop:utterance", self.handle_utterance)
         self.register_fallback(self.ask_chatgpt, 85)
