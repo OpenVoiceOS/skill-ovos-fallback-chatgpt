@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a9...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a10...HEAD)
+
+**Fixed bugs:**
+
+- fix/not\_loading\_without\_key [\#15](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/15) ([JarbasAl](https://github.com/JarbasAl))
+
+**Closed issues:**
+
+- Fails to create the skills settings folder and settings.json at first run [\#14](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/issues/14)
+
+## [V0.0.2a10](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a10) (2023-12-30)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a9...V0.0.2a10)
 
 **Fixed bugs:**
 
