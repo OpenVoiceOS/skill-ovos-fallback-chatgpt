@@ -23,11 +23,15 @@ class ChatGPTSkill(FallbackSkill):
         )
 
     def initialize(self):
-        self.chat = OpenAIPersonaSolver(config=self.settings)
         self.add_event("speak", self.handle_speak)
         self.add_event("recognizer_loop:utterance", self.handle_utterance)
         self.register_fallback(self.ask_chatgpt, 85)
 
+    @property
+    def chat(self):
+        """created fresh to allow key/url rotation when settings.json is edited"""
+        return OpenAIPersonaSolver(config=self.settings)
+        
     def handle_utterance(self, message):
         utt = message.data.get("utterances")[0]
         sess = SessionManager.get(message)
@@ -78,6 +82,8 @@ class ChatGPTSkill(FallbackSkill):
             self.speak(answer)
 
     def ask_chatgpt(self, message):
+        if "key" not in self.settings:
+            return False  # ChatGPT not configured yet
         utterance = message.data["utterance"]
         self.speak_dialog("asking")
         # ask in a thread so fallback doesnt timeout
