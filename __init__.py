@@ -73,6 +73,7 @@ class ChatGPTSkill(FallbackSkill):
         answered = False
         try:
             for utt in self.chat.stream_utterances(utterance):
+                answered = True
                 self.speak(utt)
         except: # speak error on any network issue / no credits etc
             pass
