@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a10...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a11...HEAD)
+
+**Implemented enhancements:**
+
+- feat/streaming [\#18](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/18) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.2a11](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a11) (2024-01-22)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a10...V0.0.2a11)
 
 **Fixed bugs:**
 
