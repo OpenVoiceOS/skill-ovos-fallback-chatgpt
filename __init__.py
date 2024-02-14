@@ -13,13 +13,8 @@ class ChatGPTSkill(FallbackSkill):
         return RuntimeRequirements(
             internet_before_load=True,
             network_before_load=True,
-            gui_before_load=False,
             requires_internet=True,
-            requires_network=True,
-            requires_gui=False,
-            no_internet_fallback=False,
-            no_network_fallback=False,
-            no_gui_fallback=True,
+            requires_network=True
         )
 
     def initialize(self):
@@ -75,11 +70,15 @@ class ChatGPTSkill(FallbackSkill):
     def _async_ask(self, message):
         utterance = message.data["utterance"]
         self.chat.qa_pairs = self.build_msg_history(message)
-        answer = self.chat.get_spoken_answer(utterance)
-        if not answer:
+        answered = False
+        try:
+            for utt in self.chat.stream_utterances(utterance):
+                answered = True
+                self.speak(utt)
+        except: # speak error on any network issue / no credits etc
+            pass
+        if not answered:
             self.speak_dialog("gpt_error")
-        else:
-            self.speak(answer)
 
     def ask_chatgpt(self, message):
         if "key" not in self.settings:
