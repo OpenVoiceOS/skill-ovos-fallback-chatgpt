@@ -2,7 +2,23 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a11...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a12...HEAD)
+
+**Implemented enhancements:**
+
+- feat: populate default settings, warn user if key missing [\#19](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/19) ([mikejgray](https://github.com/mikejgray))
+
+**Fixed bugs:**
+
+- Skill isn't working on latest buildroot image [\#9](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/issues/9)
+
+**Closed issues:**
+
+- populate default settings, warn user about file location if key missing [\#16](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/issues/16)
+
+## [V0.0.2a12](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a12) (2024-02-14)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a11...V0.0.2a12)
 
 **Implemented enhancements:**
 
