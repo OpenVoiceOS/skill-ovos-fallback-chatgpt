@@ -4,30 +4,30 @@ on:
     branches:
       - dev
     paths-ignore:
-      - 'version.py'
-      - 'requirements.txt'
-      - 'examples/**'
-      - '.github/**'
-      - '.gitignore'
-      - 'LICENSE'
-      - 'CHANGELOG.md'
-      - 'MANIFEST.in'
-      - 'readme.md'
-      - 'scripts/**'
+      - "version.py"
+      - "requirements.txt"
+      - "examples/**"
+      - ".github/**"
+      - ".gitignore"
+      - "LICENSE"
+      - "CHANGELOG.md"
+      - "MANIFEST.in"
+      - "readme.md"
+      - "scripts/**"
   push:
     branches:
       - master
     paths-ignore:
-      - 'version.py'
-      - 'requirements.txt'
-      - 'examples/**'
-      - '.github/**'
-      - '.gitignore'
-      - 'LICENSE'
-      - 'CHANGELOG.md'
-      - 'MANIFEST.in'
-      - 'readme.md'
-      - 'scripts/**'
+      - "version.py"
+      - "requirements.txt"
+      - "examples/**"
+      - ".github/**"
+      - ".gitignore"
+      - "LICENSE"
+      - "CHANGELOG.md"
+      - "MANIFEST.in"
+      - "readme.md"
+      - "scripts/**"
   workflow_dispatch:
 
 jobs:
@@ -35,12 +35,12 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        python-version: [ 3.7, 3.8, 3.9, "3.10" ]
+        python-version: [3.8, 3.9, "3.10", "3.11"]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install System Dependencies
@@ -57,17 +57,19 @@ jobs:
           sudo apt install libfann-dev
       - name: Install ovos dependencies
         run: |
-          pip install ovos-plugin-manager ovos-core[skills_lgpl]>=0.0.6a21
+          pip install --pre ovos-plugin-manager ovos-core[skills_lgpl]>=0.0.8
       - name: Install core repo
         run: |
           pip install .
+          pip install --pre -U ovos-workshop # 0.0.16a5 required for the class to load properly in unit tests
+          pip list
       - name: Run unittests
         run: |
-          pytest --cov=ovos-skill-template-repo --cov-report xml test/unittests
+          pytest --cov=. --cov-report xml test/unittests
           # NOTE: additional pytest invocations should also add the --cov-append flag
           #       or they will overwrite previous invocations' coverage reports
           #       (for an example, see OVOS Skill Manager's workflow)
       - name: Upload coverage
         env:
           CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v4

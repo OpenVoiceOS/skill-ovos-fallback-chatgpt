@@ -5,6 +5,11 @@ from ovos_utils.process_utils import RuntimeRequirements
 from ovos_workshop.skills.fallback import FallbackSkill
 
 
+DEFAULT_SETTINGS = {
+    "persona": "You are a helpful voice assistant with a friendly tone and fun sense of humor. You respond in 40 words or fewer.",
+    "model": "gpt-3.5-turbo",
+}
+
 class ChatGPTSkill(FallbackSkill):
     sessions = {}
 
@@ -18,6 +23,7 @@ class ChatGPTSkill(FallbackSkill):
         )
 
     def initialize(self):
+        self.settings.merge(DEFAULT_SETTINGS, new_only=True)
         self.add_event("speak", self.handle_speak)
         self.add_event("recognizer_loop:utterance", self.handle_utterance)
         self.register_fallback(self.ask_chatgpt, 85)
@@ -25,7 +31,11 @@ class ChatGPTSkill(FallbackSkill):
     @property
     def chat(self):
         """created fresh to allow key/url rotation when settings.json is edited"""
-        return OpenAIPersonaSolver(config=self.settings)
+        try:
+            return OpenAIPersonaSolver(config=self.settings)
+        except Exception as err:
+            self.log.error(err)
+            return None
         
     def handle_utterance(self, message):
         utt = message.data.get("utterances")[0]
@@ -75,13 +85,14 @@ class ChatGPTSkill(FallbackSkill):
             for utt in self.chat.stream_utterances(utterance):
                 answered = True
                 self.speak(utt)
-        except: # speak error on any network issue / no credits etc
-            pass
+        except Exception as err: # speak error on any network issue / no credits etc
+            self.log.error(err)
         if not answered:
             self.speak_dialog("gpt_error")
 
     def ask_chatgpt(self, message):
         if "key" not in self.settings:
+            self.log.error("ChatGPT not configured yet, please set your API key in %s", self.settings.path)
             return False  # ChatGPT not configured yet
         utterance = message.data["utterance"]
         self.speak_dialog("asking")
