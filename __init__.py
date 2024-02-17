@@ -24,7 +24,6 @@ class ChatGPTSkill(FallbackSkill):
 
     def initialize(self):
         self.settings.merge(DEFAULT_SETTINGS, new_only=True)
-        self.unconfigured_message = f"ChatGPT not configured yet, please set your API key in {self.settings_path}"
         self.add_event("speak", self.handle_speak)
         self.add_event("recognizer_loop:utterance", self.handle_utterance)
         self.register_fallback(self.ask_chatgpt, 85)
@@ -93,7 +92,7 @@ class ChatGPTSkill(FallbackSkill):
 
     def ask_chatgpt(self, message):
         if "key" not in self.settings:
-            self.log.error(self.unconfigured_message)
+            self.log.error("ChatGPT not configured yet, please set your API key in %s", self.settings.path)
             return False  # ChatGPT not configured yet
         utterance = message.data["utterance"]
         self.speak_dialog("asking")
