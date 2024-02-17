@@ -57,7 +57,7 @@ jobs:
           sudo apt install libfann-dev
       - name: Install ovos dependencies
         run: |
-          pip install ovos-plugin-manager ovos-core[skills_lgpl]>=0.0.7
+          pip install --pre ovos-plugin-manager ovos-core[skills_lgpl]>=0.0.8
       - name: Install core repo
         run: |
           pip install .
