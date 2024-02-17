@@ -88,7 +88,6 @@ class ChatGPTSkill(FallbackSkill):
                 self.speak(utt)
         except Exception as err: # speak error on any network issue / no credits etc
             self.log.error(err)
-            self.speak_dialog("gpt_error")
         if not answered:
             self.speak_dialog("gpt_error")
 

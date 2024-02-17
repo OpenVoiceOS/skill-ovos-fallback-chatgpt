@@ -61,6 +61,7 @@ jobs:
       - name: Install core repo
         run: |
           pip install .
+          pip list
       - name: Run unittests
         run: |
           pytest --cov=. --cov-report xml test/unittests
