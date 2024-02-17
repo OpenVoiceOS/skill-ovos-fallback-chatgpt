@@ -61,6 +61,7 @@ jobs:
       - name: Install core repo
         run: |
           pip install .
+          pip install --pre -U ovos-workshop # 0.0.16a5 required for the class to load properly in unit tests
           pip list
       - name: Run unittests
         run: |
