@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a12...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a13...HEAD)
+
+**Merged pull requests:**
+
+- Dutch translation of the dialogs [\#20](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/20) ([timonvanhasselt](https://github.com/timonvanhasselt))
+
+## [V0.0.2a13](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a13) (2024-02-17)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a12...V0.0.2a13)
 
 **Implemented enhancements:**
 
