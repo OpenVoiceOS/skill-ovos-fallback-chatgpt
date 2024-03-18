@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a13...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a14...HEAD)
+
+**Merged pull requests:**
+
+- Updated Readme about localAi and extra settings [\#21](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/21) ([timonvanhasselt](https://github.com/timonvanhasselt))
+
+## [V0.0.2a14](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a14) (2024-03-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a13...V0.0.2a14)
 
 **Merged pull requests:**
 
