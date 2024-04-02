@@ -30,7 +30,7 @@ class ChatGPTSkill(FallbackSkill):
         self.register_fallback(self.ask_chatgpt, 85)
 
     @property
-    def name(self):
+    def ai_name(self):
         return self.settings.get("name", "Chat G.P.T.")
 
     @property
@@ -97,7 +97,7 @@ class ChatGPTSkill(FallbackSkill):
         except Exception as err:  # speak error on any network issue / no credits etc
             self.log.error(err)
         if not answered:
-            self.speak_dialog("gpt_error", data={"name": self.name})
+            self.speak_dialog("gpt_error", data={"name": self.ai_name})
 
     def ask_chatgpt(self, message):
         if "key" not in self.settings:
@@ -108,7 +108,7 @@ class ChatGPTSkill(FallbackSkill):
             return False  # ChatGPT not configured yet
         utterance = message.data["utterance"]
         if self.confirmation:
-            self.speak_dialog("asking", data={"name": self.name})
+            self.speak_dialog("asking", data={"name": self.ai_name})
         # ask in a thread so fallback doesnt timeout
         self.bus.once("async.chatgpt.fallback", self._async_ask)
         self.bus.emit(
