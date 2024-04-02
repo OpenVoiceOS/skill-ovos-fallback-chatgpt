@@ -6,7 +6,6 @@ You need to configure a `key`, get it at https://platform.openai.com/api-keys
 
 Or use a LocalAI (see example below)
 
-
 ## About
 
 Capabilities:
@@ -23,21 +22,29 @@ Limitations:
 ## Configuration
 
 Under skill settings (`.config/mycroft/skills/skill-ovos-fallback-chatgpt.openvoiceos/settings.json`) you can tweak some parameters for chatGPT.
-- `key` - your api_key to access OpenAI
-- `persona` - can be used to create a "persona", give a personality to chatGPT
-- `model` - LLM model to use, eg `gpt-3.5-turbo`, see all options [here](https://platform.openai.com/docs/models)
-- `api_url: <your_local_LocalAI_server_url>` - an optional setting. For the use of OpenAI / ChatGPT it is not necessary. For the use of a LocalAI server instead of OpenAI, the URL can be pointed to an alternative/local server. When using LocalAI, the "key" can be anything, but it has to exist. Read more about it in the OVOS technical manual, page [persona server](https://openvoiceos.github.io/ovos-technical-manual/persona_server/#compatible-projects)
-- `memory_enable` - true or false
-- `memory_size` - default = 15
 
+| Option          | Value                                                                   | Description                                                                           |
+| --------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `key`           | `sk-XXXYYYZZZAAABBB123`                                                 | Your `api_key` to access OpenAI API                                                   |
+| `persona`       | `You are a helpful assistant who gives very short but factual answers.` | Give a personality to chatGPT                                                         |
+| `model`         | `gpt-3.5-turbo`                                                         | LLM model to use, see all the options [here](https://platform.openai.com/docs/models) |
+| `api_url`       | `https://llama.smartgic.io/v1`                                          | Optional and **only** required with a local AI server                                 |
+| `enable_memory` | `true`                                                                  | Remember the last generated outputs                                                   |
+| `memory_size`   | `15`                                                                    | How many memories to keep                                                             |
+| `name`          | `Chat G.P.T.`                                                           | Name to give to the AI assistant                                                      |
+| `confirmation`  | `true`                                                                  | Spoken confirmation will be triggered when a request is sent to the AI                |
 
-The default persona is `helpful, creative, clever, and very friendly.`
+When using a local AI server instead of OpenAI, the `api_url`has to redirect to an alternative/local server compatible with OpenAI API. When using local AI, the `key` can be anything, but it has to exist. Read more about it in the OVOS technical manual, page [persona server](https://openvoiceos.github.io/ovos-technical-manual/persona_server/#compatible-projects)
 
-### Example for use with OpenAI/ ChatGPT:
+The default persona is `You are a helpful voice assistant with a friendly tone and fun sense of humor. You respond in 40 words or fewer.`
 
-`cat ~/.config/mycroft/skills/skill-ovos-fallback-chatgpt.openvoiceos/settings.json`
+## Configurations
 
-```
+The skill utilizes the `~/.config/mycroft/skills/skill-ovos-fallback-chatgpt.openvoiceos/settings.json` file which allows you to configure it.
+
+### Configuration for use with OpenAI **(ChatGPT)**
+
+```json
 {
   "key": "sk-XXXYYYZZZAAABBB123",
   "model": "gpt-3.5-turbo",
@@ -48,20 +55,20 @@ The default persona is `helpful, creative, clever, and very friendly.`
 }
 ```
 
-### Example for use with LocalAI:
-`cat ~/.config/mycroft/skills/skill-ovos-fallback-chatgpt.openvoiceos/settings.json`
+### Configuration for use with Local AI
 
-```
+```json
 {
   "api_url": "https://llama.smartgic.io/v1",
   "key": "sk-xxx",
   "persona": "You are a helpful voice assistant with a friendly tone and fun sense of humor",
   "enable_memory": true,
   "memory_size": 15,
+  "name": "A.I.",
+  "confirmation": false,
   "__mycroft_skill_firstrun": false
 }
 ```
-
 
 ## Examples
 
