@@ -10,6 +10,7 @@ DEFAULT_SETTINGS = {
     "model": "gpt-3.5-turbo",
 }
 
+
 class ChatGPTSkill(FallbackSkill):
     sessions = {}
 
@@ -19,7 +20,7 @@ class ChatGPTSkill(FallbackSkill):
             internet_before_load=True,
             network_before_load=True,
             requires_internet=True,
-            requires_network=True
+            requires_network=True,
         )
 
     def initialize(self):
@@ -29,6 +30,14 @@ class ChatGPTSkill(FallbackSkill):
         self.register_fallback(self.ask_chatgpt, 85)
 
     @property
+    def ai_name(self):
+        return self.settings.get("name", "Chat G.P.T.")
+
+    @property
+    def confirmation(self):
+        return self.settings.get("confirmation", True)
+
+    @property
     def chat(self):
         """created fresh to allow key/url rotation when settings.json is edited"""
         try:
@@ -36,7 +45,7 @@ class ChatGPTSkill(FallbackSkill):
         except Exception as err:
             self.log.error(err)
             return None
-        
+
     def handle_utterance(self, message):
         utt = message.data.get("utterances")[0]
         sess = SessionManager.get(message)
@@ -85,17 +94,21 @@ class ChatGPTSkill(FallbackSkill):
             for utt in self.chat.stream_utterances(utterance):
                 answered = True
                 self.speak(utt)
-        except Exception as err: # speak error on any network issue / no credits etc
+        except Exception as err:  # speak error on any network issue / no credits etc
             self.log.error(err)
         if not answered:
-            self.speak_dialog("gpt_error")
+            self.speak_dialog("gpt_error", data={"name": self.ai_name})
 
     def ask_chatgpt(self, message):
         if "key" not in self.settings:
-            self.log.error("ChatGPT not configured yet, please set your API key in %s", self.settings.path)
+            self.log.error(
+                "ChatGPT not configured yet, please set your API key in %s",
+                self.settings.path,
+            )
             return False  # ChatGPT not configured yet
         utterance = message.data["utterance"]
-        self.speak_dialog("asking")
+        if self.confirmation:
+            self.speak_dialog("asking", data={"name": self.ai_name})
         # ask in a thread so fallback doesnt timeout
         self.bus.once("async.chatgpt.fallback", self._async_ask)
         self.bus.emit(
