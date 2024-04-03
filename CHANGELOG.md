@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a14...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a15...HEAD)
+
+**Implemented enhancements:**
+
+- Add name and confirmation options [\#22](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/22) ([goldyfruit](https://github.com/goldyfruit))
+
+## [V0.0.2a15](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/V0.0.2a15) (2024-03-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/V0.0.2a14...V0.0.2a15)
 
 **Merged pull requests:**
 
