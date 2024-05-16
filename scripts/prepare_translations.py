@@ -38,16 +38,16 @@ for lang in os.listdir(locale):
             elif fid.endswith(".rx"):
                 regexes[fid] = strings
 
-    os.makedirs(f"{tx}/{lang}", exist_ok=True)
+    os.makedirs(f"{tx}/{lang.lower()}", exist_ok=True)
     if intents:
-        with open(f"{tx}/{lang}/intents.json", "w") as f:
+        with open(f"{tx}/{lang.lower()}/intents.json", "w") as f:
             json.dump(intents, f, indent=4)
     if dialogs:
-        with open(f"{tx}/{lang}/dialogs.json", "w") as f:
+        with open(f"{tx}/{lang.lower()}/dialogs.json", "w") as f:
             json.dump(dialogs, f, indent=4)
     if vocs:
-        with open(f"{tx}/{lang}/vocabs.json", "w") as f:
+        with open(f"{tx}/{lang.lower()}/vocabs.json", "w") as f:
             json.dump(vocs, f, indent=4)
     if regexes:
-        with open(f"{tx}/{lang}/regexes.json", "w") as f:
+        with open(f"{tx}/{lang.lower()}/regexes.json", "w") as f:
             json.dump(regexes, f, indent=4)
