@@ -1,0 +1,10 @@
+{
+  "gpt_error.dialog": [
+    "Scusa, non ho potuto ottenere una risposta da {name}",
+    "Scusa, ma qualcosa è andato storto durante la connessione con {name}"
+  ],
+  "asking.dialog": [
+    "Fammi chiedere a {name}",
+    "Sto chiedendo a {name}"
+  ]
+}
