@@ -90,7 +90,6 @@ class ChatGPTSkill(FallbackSkill):
         utterance = message.data["utterance"]
         chat = self.chat
         chat.qa_pairs = self.build_msg_history(message)
-        self.log.info(chat.qa_pairs)
         answered = False
         try:
             for utt in chat.stream_utterances(utterance):
