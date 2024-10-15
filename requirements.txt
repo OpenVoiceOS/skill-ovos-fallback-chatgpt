@@ -1,5 +1,5 @@
 ovos-solver-openai-persona-plugin>=0.0.0a8
-ovos-utils~=0.0, >=0.0.28
-ovos_workshop~=0.0, >=0.0.11
-ovos-plugin-manager~=0.0, >=0.0.26a9
+ovos-utils>=0.0.38
+ovos-workshop>=0.0.15,<2.0.0
+ovos-plugin-manager~=0.0, >=0.0.26
 ovos-translate-server-plugin
