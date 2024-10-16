@@ -69,12 +69,12 @@ class ChatGPTSkill(FallbackSkill):
         ans = None
         for m in self.sessions[sess.session_id]:
             if m[0] == "user":
-                q = m[1]  # track question
-                if ans is not None:
+                if ans is not None and q is not None:
                     # save previous q/a pair
                     messages.append((q, ans))
                     q = None
                 ans = None
+                q = m[1]  # track question
             elif m[0] == "ai":
                 if ans is None:
                     ans = m[1]  # track answer
@@ -88,10 +88,11 @@ class ChatGPTSkill(FallbackSkill):
 
     def _async_ask(self, message):
         utterance = message.data["utterance"]
-        self.chat.qa_pairs = self.build_msg_history(message)
+        chat = self.chat
+        chat.qa_pairs = self.build_msg_history(message)
         answered = False
         try:
-            for utt in self.chat.stream_utterances(utterance):
+            for utt in chat.stream_utterances(utterance):
                 answered = True
                 self.speak(utt)
         except Exception as err:  # speak error on any network issue / no credits etc
