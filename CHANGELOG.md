@@ -1,12 +1,16 @@
 # Changelog
 
-## [0.1.3a1](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/0.1.3a1) (2024-10-16)
+## [0.1.4a1](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/0.1.4a1) (2024-10-31)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/0.1.2...0.1.3a1)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/0.1.3...0.1.4a1)
+
+**Implemented enhancements:**
+
+- fix: the gpt model has no context [\#27](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/27) ([PocketMiner82](https://github.com/PocketMiner82))
 
 **Merged pull requests:**
 
-- fix:allow more recent OPM [\#33](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/33) ([JarbasAl](https://github.com/JarbasAl))
+- fix:allow workshop 3.0.0 [\#35](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/35) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
