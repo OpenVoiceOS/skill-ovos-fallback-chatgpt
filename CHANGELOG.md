@@ -1,16 +1,21 @@
 # Changelog
 
-## [0.1.4a1](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/0.1.4a1) (2024-10-31)
+## [0.1.5a2](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/0.1.5a2) (2024-11-17)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/0.1.3...0.1.4a1)
-
-**Implemented enhancements:**
-
-- fix: the gpt model has no context [\#27](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/27) ([PocketMiner82](https://github.com/PocketMiner82))
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/0.1.5a1...0.1.5a2)
 
 **Merged pull requests:**
 
-- fix:allow workshop 3.0.0 [\#35](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/35) ([JarbasAl](https://github.com/JarbasAl))
+- fix: skilljson [\#39](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/39) ([JarbasAl](https://github.com/JarbasAl))
+- da-dk/translate [\#38](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/38) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+
+## [0.1.5a1](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/0.1.5a1) (2024-11-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/0.1.4...0.1.5a1)
+
+**Merged pull requests:**
+
+- de-de/translate [\#37](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/37) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 
 

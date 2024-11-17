@@ -1,0 +1,10 @@
+{
+  "gpt_error.dialog": [
+    "Jeg kunne ikke få et svar fra {name}",
+    "Beklager, men noget gik galt med {name}-anmodningen."
+  ],
+  "asking.dialog": [
+    "Lad mig spørge {name}",
+    "Spørger {name}"
+  ]
+}
