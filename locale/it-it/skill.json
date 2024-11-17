@@ -1,0 +1,16 @@
+{
+  "skill_id": "skill-ovos-fallback-chatgpt.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt",
+  "name": "Competenza di ripiego ChatGPT",
+  "description": "Se non sai qualcosa puoi sempre chiedere a ChatGPT",
+  "examples": [
+    "Spiegami quantum computing in parole semplici",
+    "Devo preparare la festa di compleanno per un bambino di 10 anni, hai qualche idea da darmi?"
+  ],
+  "tags": [
+    "ripiego",
+    "LLM",
+    "domanda",
+    "informazione"
+  ]
+}
