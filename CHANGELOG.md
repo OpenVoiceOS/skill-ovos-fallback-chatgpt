@@ -1,21 +1,20 @@
 # Changelog
 
-## [0.1.5a2](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/0.1.5a2) (2024-11-17)
+## [0.1.7a1](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/0.1.7a1) (2024-11-19)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/0.1.5a1...0.1.5a2)
-
-**Merged pull requests:**
-
-- fix: skilljson [\#39](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/39) ([JarbasAl](https://github.com/JarbasAl))
-- da-dk/translate [\#38](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/38) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-
-## [0.1.5a1](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/0.1.5a1) (2024-11-02)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/0.1.4...0.1.5a1)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/0.1.6a1...0.1.7a1)
 
 **Merged pull requests:**
 
-- de-de/translate [\#37](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/37) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- fix:allow workshop 3.0.0 [\#43](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/43) ([JarbasAl](https://github.com/JarbasAl))
+
+## [0.1.6a1](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/0.1.6a1) (2024-11-17)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/0.1.5...0.1.6a1)
+
+**Merged pull requests:**
+
+- added italian [\#41](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/41) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 
 
