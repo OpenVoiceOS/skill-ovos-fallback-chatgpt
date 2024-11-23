@@ -1,0 +1,16 @@
+{
+  "skill_id": "skill-ovos-fallback-chatgpt.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt",
+  "name": "Habilitat de rescat ChatGPT",
+  "description": "En cas de dubte, demana a ChatGPT",
+  "examples": [
+    "Explica la computació quàntica en termes senzills",
+    "Tens alguna idea creativa per a l'aniversari d'un nen de 10 anys?"
+  ],
+  "tags": [
+    "rescat",
+    "LLM",
+    "consulta",
+    "informació"
+  ]
+}
