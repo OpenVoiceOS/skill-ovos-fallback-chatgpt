@@ -1,0 +1,16 @@
+{
+  "skill_id": "skill-ovos-fallback-chatgpt.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt",
+  "name": "ChatGPT Fallback færdighed",
+  "description": "Spørg ChatGPT, når du er i tvivl",
+  "examples": [
+    "Forklar kvanteberegning i enkle vendinger",
+    "Har du nogle kreative ideer til en 10-årig fødselsdag?"
+  ],
+  "tags": [
+    "tilbagefald",
+    "LLM",
+    "forespørgsel",
+    "information"
+  ]
+}
