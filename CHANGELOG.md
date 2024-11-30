@@ -1,12 +1,12 @@
 # Changelog
 
-## [0.1.9a1](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/tree/0.1.9a1) (2024-11-25)
+## [0.1.10a1](https://github.com/OpenVoiceOS/ovos-skill-fallback-chatgpt/tree/0.1.10a1) (2024-11-30)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/compare/0.1.8...0.1.9a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-fallback-chatgpt/compare/0.1.9...0.1.10a1)
 
 **Merged pull requests:**
 
-- da-dk/translate [\#47](https://github.com/OpenVoiceOS/skill-ovos-fallback-chatgpt/pull/47) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- de-de/translate [\#49](https://github.com/OpenVoiceOS/ovos-skill-fallback-chatgpt/pull/49) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 
 
