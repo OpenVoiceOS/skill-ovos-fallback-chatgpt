@@ -1,0 +1,10 @@
+{
+    "gpt_error.dialog": [
+        "Ezin izan erantzunik lortu {name} bilatzailean",
+        "Barkatu. zerbaitek huts egin du {name} bilatzaileko eskaeran."
+    ],
+    "asking.dialog": [
+        "{name} bilatzailean galdetzen",
+        "Utzidazu {name} bilatzailean galdetzen"
+    ]
+}
