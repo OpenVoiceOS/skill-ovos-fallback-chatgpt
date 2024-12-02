@@ -1,0 +1,10 @@
+{
+    "gpt_error.dialog": [
+        "Non dei atopado unha resposta de {name}",
+        "Síntocho, mais algo foi mal coa petición de {name}."
+    ],
+    "asking.dialog": [
+        "Preguntando a {name}",
+        "Déixame preguntarlle a {name}"
+    ]
+}
